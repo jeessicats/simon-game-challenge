@@ -73,6 +73,24 @@ function checkAnswer(lastClickedIndex) {
   } else {
     console.log("wrong");
     playSound("wrong");
+
+    // Red flashing the body
+    $("body").addClass("game-over");
+    setTimeout(function() {
+        $("body").removeClass("game-over");
+    }, 200);
+
+    // Changing the title
+    $("#level-title").text("Game Over, Press Any Key to Restart");
+
+    // Restarting the game
+    startOver();
   }
+}
+
+function startOver() {
+    level = 0;
+    gamePattern = [];
+    started = false;
 }
 
