@@ -19,6 +19,9 @@ $(".btn").click(function() {
 
     // Animating the button
     animatePress(userChosenColour);
+
+    // Checking the answer
+    checkAnswer(userClickedPattern.length - 1);
 });
 
 $(document).keydown(function(event) {
@@ -46,8 +49,6 @@ function nextSequence() {
 
     // Playing the sound
     playSound(randomChosenColour);
-
-    // Incrementing the level
 }
 
 function animatePress(currentColour) {
@@ -57,3 +58,21 @@ function animatePress(currentColour) {
         $("." + currentColour).removeClass("pressed");
     }, 100);
 }
+
+function checkAnswer(lastClickedIndex) {
+  if (userClickedPattern[lastClickedIndex] === gamePattern[lastClickedIndex]) {
+    console.log("success");
+
+    if (userClickedPattern.length === gamePattern.length) {
+      setTimeout(function() {
+        userClickedPattern = [];
+        nextSequence();
+      }, 1000);
+    }
+
+  } else {
+    console.log("wrong");
+    playSound("wrong");
+  }
+}
+
