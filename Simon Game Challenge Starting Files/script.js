@@ -12,6 +12,9 @@ $(".btn").click(function() {
 
     // Playing the sound
     playSound(userChosenColour);
+
+    // Animating the button
+    animatePress(userChosenColour);
 });
 
 
@@ -30,4 +33,12 @@ function nextSequence() {
 
     // Playing the sound
     playSound(randomChosenColour);
+}
+
+function animatePress(currentColour) {
+    $("." + currentColour).addClass("pressed");
+
+    setTimeout(function() {
+        $("." + currentColour).removeClass("pressed");
+    }, 100);
 }
